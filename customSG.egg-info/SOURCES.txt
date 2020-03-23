@@ -1,0 +1,10 @@
+README.md
+setup.py
+customSG/__init__.py
+customSG/functions.py
+customSG/multiplybyfactorSG.py
+customSG.egg-info/PKG-INFO
+customSG.egg-info/SOURCES.txt
+customSG.egg-info/dependency_links.txt
+customSG.egg-info/requires.txt
+customSG.egg-info/top_level.txt
