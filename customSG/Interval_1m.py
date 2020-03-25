@@ -24,7 +24,7 @@ class Interval_1min (BaseTransformer):
         self.input_items_str=input_items_str
         self.output_items = output_items
     def execute(self, df):
-        df=pd.DataFrame(columns=[self.inputs_items[0],self.input_items_str[0],self.input_items_str[1]])
+        df=pd.DataFrame(columns=[self.input_items[0],self.input_items_str[0],self.input_items_str[1]])
         #df=pd.dataframe(output_items)
         df[self.output_items[0]] = df.groupby(['siteId', pd.to_datetime(df['Intervaldttm'].str[:16])])['HouseAir'].mean()
         return df
