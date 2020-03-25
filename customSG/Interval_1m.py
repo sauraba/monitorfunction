@@ -18,11 +18,11 @@ PACKAGE_URL = 'git+https://github.com/sauraba/monitorfunction.git@master'
 
 class Interval_1min (BaseTransformer):
 
-    def __init__(self, inputs_items, output_items):
+    def __init__(self, input_items, factor, output_items):
 
-        self.inputs_items = inputs_items
+        self.input_items = input_items
         self.output_items = output_items
-        super().__init__()
+        self.factor = float(factor)
     def execute(self, df):
         df=pd.dataframe(columns=[self.inputs_items[0],self.inputs_items[1],self.inputs_items[2]])
         #df=pd.dataframe(output_items)
@@ -40,6 +40,9 @@ class Interval_1min (BaseTransformer):
                 output_item = 'output_items',
                 is_output_datatype_derived = True)
                       )
-
+        inputs.append(ui.UISingle(
+                name = 'factor',
+                datatype=float)
+                      )
         outputs = []
         return (inputs,outputs)
