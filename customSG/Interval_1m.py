@@ -18,13 +18,13 @@ PACKAGE_URL = 'git+https://github.com/sauraba/monitorfunction.git@master'
 
 class Interval_1min (BaseTransformer):
 
-    def __init__(self, input_items, factor, output_items):
+    def __init__(self, input_items, input_items_str,output_items):
 
         self.input_items = input_items
+        self.input_items_str=input_items_str
         self.output_items = output_items
-        self.factor = float(factor)
     def execute(self, df):
-        df=pd.dataframe(columns=[self.inputs_items[0],self.inputs_items[1],self.inputs_items[2]])
+        df=pd.dataframe(columns=[self.inputs_items[0],self.input_items_str[0],self.input_items_str[1]])
         #df=pd.dataframe(output_items)
         df[self.output_items[0]] = df.groupby(['siteId', pd.to_datetime(df['Intervaldttm'].str[:16])])['HouseAir'].mean()
         return df
@@ -40,9 +40,9 @@ class Interval_1min (BaseTransformer):
                 output_item = 'output_items',
                 is_output_datatype_derived = True)
                       )
-        inputs.append(ui.UISingle(
-                name = 'factor',
-                datatype=float)
+        inputs.append(ui.UIMultiItem(
+                name = 'input_items_str',
+                datatype=str)
                       )
         outputs = []
         return (inputs,outputs)
